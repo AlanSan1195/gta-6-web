@@ -1,11 +1,50 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
+import HeroKeyLogo from "@/assets/hero-key-logo.webp";
+import HeroKeyBackground from "@/assets/hero-key-background.webp";
+import LogoVI from "@/assets/logo-vi.svg";
+import PlayButtonIcon from "@/assets/play-button.svg";
+import LogoCutted from "@/assets/logo-cutted.svg";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
-</Layout>
+  <section>
+    <picture id="hero-key" class="h-screen scale-125 overflow-hidden fixed">
+      <img
+        id="hero-key-logo"
+        src={HeroKeyLogo.src}
+        alt="Hero Key Logo"
+        class="absolute h-full w-full object-cover"
+      />
+      <img
+        src={HeroKeyBackground.src}
+        alt="Hero Key Background"
+        class="h-full w-full object-cover"
+      />
+    </picture>
+  </section>
+  <div
+    class="fixed flex flex-col items-center justify-between px-20 py-16 h-screen w-full"
+  >
+    <header class="flex justify-between w-full">
+      <LogoVI
+        class="size-11 text-white hover:text-yellow-100 transition-colors duration-500 cursor-pointer"
+      />
+    </header>
+    <button class="absolute inset-0 m-auto inline-block cursor-pointer">
+      <PlayButtonIcon
+        id="hero-play-button"
+        class="text-white m-auto size-30 mt-10 rounded-full backdrop-blur-3xl hover:scale-110 transition-transform duration-500"
+      />
+    </button>
+
+	<footer id="hero-footer" class="absolute bottom-4 m-auto  ">
+		<LogoCutted  class=" text-white  w-30"/>
+		<span class=" absolute top-[53px] uppercase tracking-[6px] whitespace-nowrap text-center -left-1/2 translate-x-3 font-semibold text-sm text-shadow-[0_0_2px_rgba(255,255,255,0.5), 0_0_12px_#000] ">Ver el Tráiler 2</span>
+	</footer>
+</div>
+</Layout> 
+
