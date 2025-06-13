@@ -11,21 +11,24 @@ import LogoCutted from "@/assets/logo-cutted.svg";
 ---
 
 <Layout>
-  <section>
-    <picture id="hero-key" class="h-screen scale-125 overflow-hidden fixed">
-      <img
-        id="hero-key-logo"
-        src={HeroKeyLogo.src}
-        alt="Hero Key Logo"
-        class="absolute h-full w-full object-cover"
-      />
-      <img
-        src={HeroKeyBackground.src}
-        alt="Hero Key Background"
-        class="h-full w-full object-cover"
-      />
-    </picture>
-  </section>
+  <div id="logo-stack" class="fixed top-0 h-screen w-full">
+    <section>
+      <picture id="hero-key" class="h-screen scale-125 overflow-hidden fixed">
+        <img
+          id="hero-key-logo"
+          src={HeroKeyLogo.src}
+          alt="Hero Key Logo"
+          class="absolute h-full w-full object-cover"
+        />
+        <img
+        id="hero-key-background"
+          src={HeroKeyBackground.src}
+          alt="Hero Key Background"
+          class="h-full w-full object-cover"
+        />
+      </picture>
+    </section>
+  </div>
   <div
     class="fixed flex flex-col items-center justify-between px-20 py-16 h-screen w-full"
   >
@@ -50,6 +53,17 @@ import LogoCutted from "@/assets/logo-cutted.svg";
     </footer>
   </div>
 </Layout>
+
+<!-- // eta es la magian del mask at big to small effect  -->
+<style>
+  #logo-stack {
+    background-color: white;
+    mask-image: url("/logo-stack.svg");
+    mask-position: center 25% ;
+    mask-repeat: no-repeat;
+    mask-size: clamp(5000vh, 3500%, 0vh);
+    }
+</style>
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -65,6 +79,7 @@ import LogoCutted from "@/assets/logo-cutted.svg";
   tl.to("#hero-key", { duration: 1, scale: 1 })
     .to("#hero-key-logo", { opacity: 0 }, "<")
     .to("#hero-play-button", { opacity: 0 }, "<")
-    .to("#hero-footer ", { opacity: 0 }, "<");
-
+    .to("#hero-footer ", { opacity: 0 }, "<")
+    .to("#logo-stack", {maskSize: "clamp(20vh, 25%, 30vh)"},0.15)
+    .to("#hero-key", {opacity: 0}, "<")
 </script>
