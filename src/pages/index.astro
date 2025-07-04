@@ -19,7 +19,7 @@ import LogoCutted from "@/assets/logo-cutted.svg";
           src={HeroKeyLogo.src}
           alt="Hero Key Logo"
           class="absolute h-full w-full object-cover"
-        />
+        />I
         <img
           id="hero-key-background"
           src={HeroKeyBackground.src}
@@ -57,17 +57,12 @@ import LogoCutted from "@/assets/logo-cutted.svg";
 
   <div
     id="footer"
-    class="opacity-0 flex justify-center md:mt-12 lg:mt-14 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] md:w-[950px] p-1"
+    class="text-gradient opacity-0  uppercase text-center text-5xl md:text-7xl lg:text-[110px]  flex justify-center md:mt-12 lg:mt-14 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[750px] lg:w-[950px]"
   >
-    <p
-      id="parrafo"
-      class="text-white text-center font-bold text-2xl md:text-9xl text-wrap"
-    >
-      i'm enjoyed make it By Alan San. 2025
-    </p>
+    i'm enjoyed <br> make it.  <br> Alan San 2025
   </div>
- 
 </Layout>
+
 <!--   -->
 
 <!-- // eta es la magian del mask at big to small effect  -->
@@ -81,7 +76,8 @@ import LogoCutted from "@/assets/logo-cutted.svg";
   }
 </style>
 <script>
-  import { gsap } from "gsap";
+
+import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
@@ -92,17 +88,59 @@ import LogoCutted from "@/assets/logo-cutted.svg";
     },
   });
   gsap.set("#footer", {
-    opacity: 1,
-    clipPath: "ellipse(60% 0% at 50% 190%)", // Oculto desde abajo
+    opacity: 0,
+    clipPath: "ellipse(60% 0% at 50% 190%)",
   });
 
   tl.to("#hero-key", { duration: 1, scale: 1 })
     .to("#hero-key-logo", { opacity: 0 }, "<")
     .to("#hero-play-button", { opacity: 0 }, "<")
     .to("#hero-footer ", { opacity: 0 }, "<")
-    .to("#logo-stack", { maskSize: "clamp(20vh, 25%, 30vh)", }, 0.15)
+    .to("#logo-stack", { maskSize: "clamp(20vh, 25%, 30vh)", duration:1 },"<")
     .to("#hero-key", { opacity: 0 }, "<")
-    // .to("#circle-container", { scale: 2.6, zIndex: 70 }, ">-0.1")
-    .to("#footer", { clipPath:  "ellipse(60% 100% at 50% 50%)", ease: "power2.out", scale:0.8}, "-=0.5")
-    .to("#logo-stack", {scale:0.8}, "-=0.5")
+    .to(
+      "#footer",
+      {
+        clipPath: "ellipse(60% 100% at 50% 50%)",
+        opacity: 1,
+        ease: "power4.out",
+        scale: 0.9,
+        duration:1.5
+      },">0.2"
+
+    )
+    .to("#logo-stack", {scale:0.8, duration: 1 },"<")
+    .to(
+    "#footer",
+    {
+      clipPath: "ellipse(60% 100% at 50% -100%)", 
+      ease: "power2.inOut",
+      scale: 0.9,
+      duration: 2,
+    },
+    ">" 
+  )
+    .to(
+    "#footer",
+    {
+      opacity:0,
+      ease: "power2.inOut",
+      duration: 2.2,
+    },
+    "<" 
+  );
+  
+
+    // .to("#logo-stack", { scale: 0.8, duration: 2 }, "<")
+
+    // .to(
+    //   "#footer",
+    //   {
+    //     opacity: 1,
+    //     ease: "power2.out",
+    //     duration: 2,
+    //   },
+    //   "<"
+    // )
+    
 </script>
