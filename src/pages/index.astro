@@ -5,6 +5,9 @@ import HeroKeyBackground from "@/assets/hero-key-background.webp";
 import LogoVI from "@/assets/logo-vi.svg";
 import PlayButtonIcon from "@/assets/play-button.svg";
 import LogoCutted from "@/assets/logo-cutted.svg";
+import GithubIcon from "@/assets/github.svg";
+import Linkelindicon from "@/assets/linkelind.svg";
+import FullLogo from "@/assets/full-logo.webp"
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -18,7 +21,7 @@ import LogoCutted from "@/assets/logo-cutted.svg";
           id="hero-key-logo"
           src={HeroKeyLogo.src}
           alt="Hero Key Logo"
-          class="absolute h-full w-full object-cover"
+          class="absolute h-full w-full object-cover mt-6"
         />I
         <img
           id="hero-key-background"
@@ -54,12 +57,22 @@ import LogoCutted from "@/assets/logo-cutted.svg";
       >
     </footer>
   </div>
-
+  
   <div
     id="footer"
-    class="text-gradient opacity-0  uppercase text-center text-5xl md:text-7xl lg:text-[110px]  flex justify-center md:mt-12 lg:mt-14 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[750px] lg:w-[950px]"
+    class="text-gradient opacity-0 uppercase text-center text-5xl md:text-7xl lg:text-[110px] flex flex-col justify-center md:mt-12 lg:mt-14 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[750px] lg:w-[950px] "
   >
-    i'm enjoyed <br> make it.  <br> Alan San 2025
+  
+  <p>i'm enjoyed <br /> make it. <br />  <a href="https://alansan.pro" target="_blank">Alan San</a> 2025</p>
+
+    <div class="flex justify-center items-center mt-8 gap-x-10 md:gap-x-44">
+      <a href="https://github.com/AlanSan1195" target="_blank">
+        <GithubIcon /></a
+      >
+      <a href="https://www.linkedin.com/in/devsan11/" target="_blank">
+        <Linkelindicon /></a
+      >
+    </div>
   </div>
 </Layout>
 
@@ -76,8 +89,7 @@ import LogoCutted from "@/assets/logo-cutted.svg";
   }
 </style>
 <script>
-
-import { gsap } from "gsap";
+  import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
@@ -96,7 +108,7 @@ import { gsap } from "gsap";
     .to("#hero-key-logo", { opacity: 0 }, "<")
     .to("#hero-play-button", { opacity: 0 }, "<")
     .to("#hero-footer ", { opacity: 0 }, "<")
-    .to("#logo-stack", { maskSize: "clamp(20vh, 25%, 30vh)", duration:1 },"<")
+    .to("#logo-stack", { maskSize: "clamp(20vh, 29%, 30vh)", duration: 1 }, "<")
     .to("#hero-key", { opacity: 0 }, "<")
     .to(
       "#footer",
@@ -104,43 +116,42 @@ import { gsap } from "gsap";
         clipPath: "ellipse(60% 100% at 50% 50%)",
         opacity: 1,
         ease: "power4.out",
-        scale: 0.9,
-        duration:1.5
-      },">0.2"
-
+        scale: 0.8,
+        duration: 1.5,
+      },
+      ">0.2"
     )
-    .to("#logo-stack", {scale:0.8, duration: 1 },"<")
+    .to("#logo-stack", { scale: 0.8, duration: 1 }, "<")
     .to(
-    "#footer",
-    {
-      clipPath: "ellipse(60% 100% at 50% -100%)", 
-      ease: "power2.inOut",
-      scale: 0.9,
-      duration: 2,
-    },
-    ">" 
-  )
+      "#footer",
+      {
+        clipPath: "ellipse(60% 100% at 50% -100%)",
+        ease: "power2.inOut",
+        scale: 0.8,
+        duration: 2,
+      },
+      ">"
+    )
     .to(
-    "#footer",
-    {
-      opacity:0,
-      ease: "power2.inOut",
-      duration: 2.2,
-    },
-    "<" 
-  );
-  
+      "#footer",
+      {
+        opacity: 0,
+        ease: "power2.inOut",
+        duration: 2.2,
+      },
+      "<"
+    );
 
-    // .to("#logo-stack", { scale: 0.8, duration: 2 }, "<")
+  // .to("#logo-stack", { scale: 0.8, duration: 2 }, "<")
 
-    // .to(
-    //   "#footer",
-    //   {
-    //     opacity: 1,
-    //     ease: "power2.out",
-    //     duration: 2,
-    //   },
-    //   "<"
-    // )
-    
+  // .to(
+  //   "#footer",
+  //   {
+  //     opacity: 1,
+  //     ease: "power2.out",
+  //     duration: 2,
+  //   },
+  //   "<"
+  // )
 </script>
+<!-- <img id="full-log" src={FullLogo.src} class=" w-[236px] absolute bottom-0   left-1/2 -translate-x-27   " alt="Logo completo"> -->
