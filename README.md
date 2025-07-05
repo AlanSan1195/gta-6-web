@@ -1,48 +1,82 @@
-# Astro Starter Kit: Basics
+# GTA VI Landing Page — Efecto Scroll al estilo Rockstar Games
 
-```sh
-pnpm create astro@latest -- --template basics
+Este proyecto es una landing page inspirada en el sitio oficial de GTA VI de Rockstar Games, replicando el efecto de scroll animado que caracteriza a la web original. Para lograrlo, utilizamos [GSAP (GreenSock Animation Platform)](https://gsap.com/) y su ecosistema de plugins, una de las bibliotecas de animación más potentes y flexibles en JavaScript.
+
+## Tecnologías utilizadas
+
+- [Astro](https://astro.build/) para la estructura del proyecto y renderizado.
+- [TailwindCSS](https://tailwindcss.com/) para los estilos.
+- [GSAP](https://gsap.com/) para animaciones avanzadas.
+
+## ¿Qué aprendimos de GSAP?
+
+### 1. Importación y registro de plugins
+Para aprovechar funcionalidades como el scroll animado, importamos GSAP y registramos los plugins necesarios, por ejemplo:
+
+```js
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+**Referencia:** [Registro de plugins en GSAP](https://gsap.com/docs/v3/GSAP/gsap.registerPlugin/)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### 2. Uso de Timeline
+GSAP permite crear líneas de tiempo (`gsap.timeline`) para encadenar animaciones y controlar su secuencia:
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```js
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.mi-seccion',
+    start: 'top center',
+    end: 'bottom top',
+    scrub: true
+  }
+});
+tl.to('.elemento', { y: 100, opacity: 1, duration: 1 });
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+**Referencia:** [Timeline en GSAP](https://gsap.com/docs/v3/GSAP/Timeline/)
 
-## 🧞 Commands
+### 3. Parámetros y sintaxis especial
+Al encadenar animaciones, GSAP permite controlar la superposición y sincronización usando parámetros como `"-=1"` y `"<"`:
 
-All commands are run from the root of the project, from a terminal:
+- `"-=1"`: Inicia la animación 1 segundo antes de que termine la anterior, creando solapamiento.
+- `"<"`: Inicia la animación al mismo tiempo que la anterior.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Ejemplo:
+```js
+tl.to('.a', { x: 100, duration: 1 })
+  .to('.b', { y: 100, duration: 1 }, '-=0.5') // Comienza 0.5s antes de que termine la anterior
+  .to('.c', { opacity: 1, duration: 1 }, '<'); // Comienza junto con la anterior
+```
 
-## 👀 Want to learn more?
+**Referencia:** [Posicionamiento relativo en Timeline](https://gsap.com/docs/v3/GSAP/Timeline/#position-parameter)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### 4. ScrollTrigger
+El plugin ScrollTrigger permite vincular animaciones al scroll de la página, logrando efectos como los de Rockstar Games:
+
+```js
+gsap.to('.mi-elemento', {
+  scrollTrigger: {
+    trigger: '.mi-elemento',
+    start: 'top 80%',
+    end: 'bottom 20%',
+    scrub: true
+  },
+  y: 200,
+  opacity: 1
+});
+```
+
+**Referencia:** [ScrollTrigger](https://gsap.com/docs/v3/Plugins/ScrollTrigger/)
+
+## Recursos útiles
+
+- [Documentación oficial de GSAP](https://gsap.com/docs/)
+- [Ejemplos de ScrollTrigger](https://codepen.io/collection/nVYWZR)
+- [Guía de timelines y sincronización](https://gsap.com/resources/)
+
+---
+
+Este proyecto es solo con fines educativos y de inspiración, sin relación oficial con Rockstar Games.
